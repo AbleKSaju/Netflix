@@ -3,6 +3,7 @@ import "./RowPost.css"
 import YouTube from 'react-youtube'
 import axios from '../../axios'
 import { imageUrl,api_key } from '../../Constants/constants'
+import Shimmer from '../../Components/Shimmer/Shimmer'
 function RowPost(props) {
   const [movies, setMovies] = useState([])
   const [urlId,setUrlId]=useState('')
@@ -15,7 +16,6 @@ function RowPost(props) {
     height: '390',
     width: '100%',
     playerVars: {
-      // https://developers.google.com/youtube/player_parameters
       autoplay: 1,
     }
   };
@@ -30,8 +30,8 @@ function RowPost(props) {
       }
     })
   }
-  return (
-    <div className='row'>
+  return ( movies.length===0)?(<Shimmer/>):(
+       <div className='row'>
     <h2>{props.title}</h2>
     <div className='posters'>
       {movies.map((val)=>
@@ -40,7 +40,8 @@ function RowPost(props) {
     </div>
     {urlId && <YouTube opts={opts} videoId={urlId.key} />}
 </div>  
-)
+  )
+
 }
 
 export default RowPost
