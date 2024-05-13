@@ -7,8 +7,10 @@ import Shimmer from '../../Components/Shimmer/Shimmer'
 function RowPost(props) {
   const [movies, setMovies] = useState([])
   const [urlId,setUrlId]=useState('')
+  console.log(props,"props");
   useEffect(()=>{
     axios.get(props?.url).then(response=>{
+      console.log(response?.data,"response?.data");
       setMovies(response?.data?.results)
     })
   },[])
