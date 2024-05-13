@@ -9,7 +9,7 @@ function RowPost(props) {
   const [urlId,setUrlId]=useState('')
   useEffect(()=>{
     axios.get(props.url).then(response=>{
-      setMovies(response.data.results)
+      setMovies(response.data?.results)
     })
   },[])
   const opts = {
@@ -21,15 +21,12 @@ function RowPost(props) {
   };
   const handleMovie =(id)=>{
     axios.get(`/movie/${id}/videos?api_key=${api_key}&language=en-US`).then(response=>{
-      console.log(response.data.results[0],"keeeyyyyyy");
-      if(response.data.results.length!==0){
-        setUrlId(response.data.results[0])
-      }else{
-        console.log(response.data.results.length);
+      if(response.data?.results?.length!==0){
+        setUrlId(response.data?.results[0])
       }
     })
   }
-  return ( movies.length===0)?(<Shimmer/>):(
+  return ( movies?.length===0)?(<Shimmer/>):(
        <div className='row'>
     <h2>{props.title}</h2>
     <div className='posters'>
