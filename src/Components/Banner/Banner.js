@@ -23,7 +23,7 @@ className="banner">
           <button className="button">My list</button>
         </div>
         <h1 className="description">
-         {movie?movie?.overview:""}
+         {movie?movie?.overview.slice(0,370)+"...":""}
         </h1>
       </div>
       <div className="fade_bottom"></div>
